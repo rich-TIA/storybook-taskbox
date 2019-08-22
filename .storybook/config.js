@@ -8,6 +8,9 @@ import { configure } from "@storybook/react";
 // Storyshots - use Babel macro instead of 'require.context' for use in Jest
 import requireContext from "require-context.macro";
 
+// Chromatic
+import "storybook-chromatic";
+
 // Make SB use our CSS file. Intellisense didn't pick this up at all
 // NB this is *copied* from the learnstorybook-code GitHub repo at
 // https://github.com/chromaui/learnstorybook-code/tree/master/src

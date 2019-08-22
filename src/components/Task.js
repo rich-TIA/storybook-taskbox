@@ -9,6 +9,9 @@ import React from "react";
 // Type-safety - alternative to Typescript. Think this is part of the React distro
 import PropTypes from "prop-types";
 
+// Knobs: HAving discovered that the title field needs to handle overflow, add a
+// style element to deal with this. In practice this should be added to the CSS and
+// a story added to check for this every time
 function Task({ task: { id, title, state }, onArchiveTask, onPinTask }) {
   return (
     <div className={`list-item ${state}`}>
@@ -27,6 +30,7 @@ function Task({ task: { id, title, state }, onArchiveTask, onPinTask }) {
           value={title}
           readOnly={true}
           placeholder="Input title"
+          style={{ textOverflow: "ellipsis" }}
         />
       </div>
       <div className="actions" onClick={event => event.stopPropagation()}>

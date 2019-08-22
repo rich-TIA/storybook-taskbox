@@ -10,6 +10,8 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
+import { withKnobs, object } from "@storybook/addon-knobs";
+//import { withKnobs, object } from "@storybook/addon-knobs/react";
 
 import Task from "./Task";
 
@@ -29,9 +31,17 @@ const actions = {
 };
 
 storiesOf("Task", module)
+  // knobs...
+  .addDecorator(withKnobs)
   // Return component class with set of props in a given state
   // cf React Stateless Functional Component https://reactjs.org/docs/components-and-props.html
-  .add("default", () => <Task task={task} {...actions} />)
+
+  // ...integrate knobs. Note 'task' is now destructed. Pass 'name' for tab name and the object
+  // passed will be given to the Knobs tab as JSON
+  // NB Note *return* statement here
+  .add("default", () => {
+    return <Task task={object("task", { ...task })} {...actions} />;
+  })
   .add("pinned", () => (
     <Task task={{ ...task, state: "TASK_PINNED" }} {...actions} />
   ))
